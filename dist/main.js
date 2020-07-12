@@ -90,10 +90,35 @@
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather */ \"./src/weather.js\");\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage */ \"./src/storage.js\");\n\n\n\n// Init storage\nconst storage = new _storage__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n// Get stored location data\nconst weatherLocation = storage.getLocationData();\n// init weather\nconst weather = new _weather__WEBPACK_IMPORTED_MODULE_0__[\"default\"](weatherLocation.city);\n\nconst changeBtn = document.getElementById('w-change-btn');\nconst city = document.getElementById('city');\n\nfunction getWeather() {\n  weather.getWeather(city.value)\n    .then(results => {\n      // ui.paint(results);\n      console.log(results);\n    })\n    .catch(err => console.log(err));\n}\n\ndocument.addEventListener('DOMContentLoaded', getWeather);\n// change weather location\nchangeBtn.addEventListener('click', () => {\n  const city = document.getElementById('city').value;\n  // Change location\n  weather.changeLocation(city);\n  // Set location in LS\n  storage.setLocationData(city);\n  // Get and display weather\n  getWeather();\n  // close modal\n  document.getElementById('close').click();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/storage.js":
+/*!************************!*\
+  !*** ./src/storage.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass Storage {\n  constructor(city) {\n    this.city = city;\n    this.defaultCity = 'Lagos';\n  }\n\n  getLocationData() {\n    if (localStorage.getItem('city') === null) {\n      this.city = this.defaultCity;\n    } else {\n      this.city = localStorage.getItem('city');\n    }\n\n    return {\n      city: this.city,\n    };\n  }\n\n  // eslint-disable-next-line class-methods-use-this\n  setLocationData(city) {\n    localStorage.setItem('city', city);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Storage);\n\n//# sourceURL=webpack:///./src/storage.js?");
+
+/***/ }),
+
+/***/ "./src/weather.js":
+/*!************************!*\
+  !*** ./src/weather.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// const API_KEY = '9682c3298e2dec0fe07fd5e39edab9ce';\n// const BASE_URL = 'https://api.openweathermap.org/data/2.5/';\n\n// const weatherController = (() => {\n//   const getWeather = async (location) => {\n//     try {\n//       const response = await fetch(`${BASE_URL}weather?q=${location}&APPID=${API_KEY}`, { mode: 'cors' });\n\n//       if (response.status === 200) {\n//         return response.json();\n//       }\n//       return 'City not found';\n//     } catch (error) {\n//       return error.message;\n//     }\n//   };\n\n//   return { getWeather };\n// })();\n\n// export default weatherController;\n\nclass Weather {\n  constructor(city, state) {\n    this.API_KEY = '9682c3298e2dec0fe07fd5e39edab9ce';\n    this.city = city;\n    this.state = state;\n  }\n\n  // Fetch weather from API\n  // eslint-disable-next-line class-methods-use-this\n  async getWeather() {\n    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&APPID=${this.API_KEY}`, { mode: 'cors' });\n\n    const responseData = await response.json();\n\n    return responseData;\n  }\n\n  // Change weather location\n  changeLocation(city) {\n    this.city = city;\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Weather);\n\n//# sourceURL=webpack:///./src/weather.js?");
 
 /***/ })
 

@@ -17,9 +17,9 @@ function getWeather() {
   weather.getWeather(city.value)
     .then(results => {
       dom.paint(results);
-      console.log(results);
     })
-    .catch(err => console.log(err));
+    // eslint-disable-next-line no-alert
+    .catch(err => alert(err));
 }
 
 document.addEventListener('DOMContentLoaded', getWeather);

@@ -6,7 +6,7 @@ class Weather {
 
   // eslint-disable-next-line class-methods-use-this
   async getWeather() {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&APPID=${this.API_KEY}`, { mode: 'cors' });
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&APPID=${this.API_KEY}`, { mode: 'cors' });
 
     const responseData = await response.json();
 

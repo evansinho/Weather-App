@@ -43,4 +43,4 @@ Feel free to check the [issues page](https://github.com/evansinho/Weather-App/is
 
 ## Show your support
 
-Give a ⭐️ if you like this project!## Live 
+Give a ⭐️ if you like this project!

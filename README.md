@@ -20,7 +20,7 @@
 
 ## snaphot
 
-![Create Book](snapshot.PNG)
+![weather](snapshot.png)
 
 ### Usage
 

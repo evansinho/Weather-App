@@ -8,13 +8,14 @@ const dom = new Dom();
 
 const weatherLocation = storage.getLocationData();
 
-const weather = new Weather(weatherLocation.city);
+const weather = new Weather(weatherLocation.city, weatherLocation.unit);
 
 const changeBtn = document.getElementById('w-change-btn');
 const city = document.getElementById('city');
+const unit = document.getElementById('unit');
 
 function getWeather() {
-  weather.getWeather(city.value)
+  weather.getWeather(city.value, unit.value)
     .then(results => {
       dom.paint(results);
     })
@@ -25,11 +26,9 @@ function getWeather() {
 document.addEventListener('DOMContentLoaded', getWeather);
 
 changeBtn.addEventListener('click', () => {
-  const city = document.getElementById('city').value;
+  weather.changeLocation(city.value, unit.value);
 
-  weather.changeLocation(city);
-
-  storage.setLocationData(city);
+  storage.setLocationData(city.value, unit.value);
 
   getWeather();
 

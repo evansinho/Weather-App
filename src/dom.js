@@ -14,7 +14,7 @@ class Dom {
   paint(weather) {
     this.location.textContent = weather.name;
     this.desc.textContent = weather.weather[0].description;
-    this.string.innerHTML = `${Math.floor(weather.main.temp)}<span>&#xb0;</span>C`;
+    this.string.innerHTML = `${Math.floor(weather.main.temp)}<span>&#xb0;</span>`;
     this.icon.setAttribute('src', `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
     this.humidity.textContent = `Relative Humidity: ${weather.main.humidity}%`;
     this.feelsLike.textContent = `Feels Like: ${weather.main.feels_like}`;
